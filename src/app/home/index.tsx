@@ -14,7 +14,6 @@ const HomePage = () => {
   );
 
   const { isLoading, GET } = useFetch(
-    // "https://68247ed20f0188d7e7298546.mockapi.io/"
     "https://68e67be521dd31f22cc5d844.mockapi.io/"
   );
 
@@ -47,15 +46,23 @@ const HomePage = () => {
 
   if (isLoading) {
     return (
-      <View className="flex flex-1 justify-center items-center">
+      <View className="flex flex-1 justify-center items-center bg-white">
         <ActivityIndicator animating={true} size={"large"} />
       </View>
     );
   }
 
+  const filters: { key: typeof statusFilter; label: string }[] = [
+    { key: "all", label: "Tất cả" },
+    { key: "done", label: "Hoàn thành" },
+    { key: "notdone", label: "Chưa xong" },
+  ];
+
   return (
-    <View className="flex flex-1">
-      <Text className="my-2 text-xl font-bold px-4">Danh sách công việc</Text>
+    <View className="flex flex-1 bg-white">
+      <Text className="my-2 text-xl font-bold px-4 text-blue-900">
+        Danh sách công việc
+      </Text>
 
       <View className="px-4 gap-3 mb-2">
         <TextInput
@@ -65,25 +72,22 @@ const HomePage = () => {
           onChangeText={setSearch}
         />
 
-        <View className="flex flex-row justify-between">
-          <Button
-            mode={statusFilter === "all" ? "contained" : "outlined"}
-            onPress={() => setStatusFilter("all")}
-          >
-            Tất cả
-          </Button>
-          <Button
-            mode={statusFilter === "done" ? "contained" : "outlined"}
-            onPress={() => setStatusFilter("done")}
-          >
-            Hoàn thành
-          </Button>
-          <Button
-            mode={statusFilter === "notdone" ? "contained" : "outlined"}
-            onPress={() => setStatusFilter("notdone")}
-          >
-            Chưa xong
-          </Button>
+        <View className="flex flex-row justify-between gap-2">
+          {filters.map((filter) => {
+            const isActive = statusFilter === filter.key;
+            return (
+              <Button
+                key={filter.key}
+                mode={isActive ? "contained" : "outlined"}
+                onPress={() => setStatusFilter(filter.key)}
+                buttonColor={isActive ? "#0B6EF6" : undefined}
+                textColor={isActive ? "#ffffff" : "#0B6EF6"}
+                style={{ flex: 1 }}
+              >
+                {filter.label}
+              </Button>
+            );
+          })}
         </View>
       </View>
 

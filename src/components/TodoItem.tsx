@@ -22,7 +22,15 @@ const TodoItem = ({ data }: Props) => {
 
   return (
     <View className="w-full px-4 my-2">
-      <Card>
+      <Card
+        mode="contained"
+        style={{
+          backgroundColor: "#FFFFFF",
+          borderRadius: 12,
+          borderWidth: 1,
+          borderColor: "#E5E7EB",
+        }}
+      >
         <Card.Title title={data.title}></Card.Title>
         <Card.Content>
           <Text>Nội dung: {data.content}</Text>

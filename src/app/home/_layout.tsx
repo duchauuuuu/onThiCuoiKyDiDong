@@ -5,9 +5,15 @@ import { Icon } from "react-native-paper";
 
 const HomeLayout = () => {
   return (
-    <View className="flex flex-1">
+    <View className="flex flex-1 bg-white">
       <Tabs
-        screenOptions={{ headerShown: false, tabBarActiveTintColor: "purple" }}
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: "#0B6EF6",
+          tabBarInactiveTintColor: "#64748B",
+          tabBarStyle: { backgroundColor: "#FFFFFF" },
+          sceneStyle: { backgroundColor: "#FFFFFF" },
+        }}
       >
         <Tabs.Screen
           name="index"

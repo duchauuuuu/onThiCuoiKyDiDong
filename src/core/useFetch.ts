@@ -17,7 +17,7 @@ export const useFetch = (baseUrl: string) => {
         ...options,
       });
 
-      if (!res.ok) throw new Error("Có lỗi dồi");
+      if (!res.ok) throw new Error("Có lỗi xảy ra");
 
       return await res.json();
     } catch (e) {
